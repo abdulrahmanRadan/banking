@@ -51,31 +51,33 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     pathname === item.route ||
                     pathname.startsWith(`${item.route}/`);
                   return (
-                    <Link
-                      href={item.route}
-                      key={item.label}
-                      className={cn("sidebar-link", {
-                        "bg-bank-gradient": isActive,
-                      })}
-                    >
-                      <div className="relative size-6">
-                        <Image
-                          src={item.imgURL}
-                          alt={item.label}
-                          fill
-                          className={cn({
-                            "brightness-[3] invert-0 ": isActive,
-                          })}
-                        />
-                      </div>
-                      <p
-                        className={cn("sidebar-label", {
-                          "!text-white": isActive,
+                    <SheetClose asChild key={item.route}>
+                      <Link
+                        href={item.route}
+                        key={item.label}
+                        className={cn("sidebar-link", {
+                          "bg-bank-gradient": isActive,
                         })}
                       >
-                        {item.label}
-                      </p>
-                    </Link>
+                        <div className="relative size-6">
+                          <Image
+                            src={item.imgURL}
+                            alt={item.label}
+                            fill
+                            className={cn({
+                              "brightness-[3] invert-0 ": isActive,
+                            })}
+                          />
+                        </div>
+                        <p
+                          className={cn("sidebar-label", {
+                            "!text-white": isActive,
+                          })}
+                        >
+                          {item.label}
+                        </p>
+                      </Link>
+                    </SheetClose>
                   );
                 })}
               </nav>
