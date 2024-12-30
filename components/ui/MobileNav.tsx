@@ -14,8 +14,13 @@ import { usePathname } from "next/navigation";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
+
+  if (!sidebarLinks || !sidebarLinks.length) {
+    throw new Error("Sidebar links are not defined");
+  }
+
   return (
-    <section className="w-fulll max-w-[264px]">
+    <section className="w-full max-w-[264px]">
       <Sheet>
         <SheetTrigger>
           <Image
@@ -54,7 +59,6 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     <SheetClose asChild key={item.route}>
                       <Link
                         href={item.route}
-                        key={item.label}
                         className={cn("mobilenav-sheet_close w-full", {
                           "bg-bank-gradient": isActive,
                         })}
@@ -82,7 +86,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                 USER
               </nav>
             </SheetClose>
-            FOOTER
+            Footer
           </div>
         </SheetContent>
       </Sheet>

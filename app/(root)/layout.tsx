@@ -5,9 +5,12 @@ import Image from "next/image";
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children: React.ReactNode | null;
+}>): JSX.Element {
   const loggedIn = { firstName: "Radan", lastName: "JSM" };
+  if (!children) {
+    throw new Error("Children prop must not be null");
+  }
   return (
     <main className="flex h-screen w-full font-inter">
       <Sidebar user={loggedIn} />
